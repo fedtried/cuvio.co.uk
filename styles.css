@@ -1,0 +1,62 @@
+:root {
+  --leaf-green: #48724A;
+  --soft-sage: #DDE8D2;
+  --warm-sand: #F5F3E7;
+  --clay-accent: #D9BBA9;
+  --seasonal-accent: #F6EFD2;
+  --primary-text: #223322;
+  --secondary-text: #5A6B5A;
+  --background: #F7FBF4;
+  --card-background: #FFFFFF;
+  --font-main: "Helvetica Neue", sans-serif;
+}
+
+body {
+  margin: 0;
+  background-color: var(--background);
+  font-family: var(--font-main);
+  color: var(--primary-text);
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+header, footer {
+  background: var(--soft-sage);
+  padding: 16px;
+  border-radius: 18px;
+}
+
+nav a {
+  margin-right: 12px;
+  text-decoration: none;
+  color: var(--leaf-green);
+  font-weight: 600;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+h1, h2 {
+  font-weight: 600;
+}
+
+.button {
+  background: var(--leaf-green);
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 12px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.button:hover {
+  background: #35583A;
+}
+
