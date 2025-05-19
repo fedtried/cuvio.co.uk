@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cuvio Privacy Policy</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="favicon.ico" />
+</head>
+<body class="soft-bg">
+  <header class="header-bar fixed-header">
+    <div class="logo-wrap">
+      <a href="index.html">
+        <img src="Cuvio_Icon.PNG" alt="Cuvio logo" class="logo-img large-logo" />
+      </a>
+    </div>
+    <a href="https://apps.apple.com/" target="_blank" class="button-outline prominent-btn">Download App</a>
+  </header>
+  <main class="snap-container">
+    <section class="snap-section fade-in-section">
+      <div class="section-content" style="flex-direction: column; align-items: flex-start;">
+        <h2>Privacy Policy</h2>
+        <p>This is the privacy policy for Cuvio, the smart meal planning app. We value your privacy and are committed to protecting your data. Full policy coming soon.</p>
+      </div>
+    </section>
+    <footer class="footer-section snap-section footer-bg fade-in-section">
+      <div class="section-content" style="flex-direction: column; align-items: center;">
+        <div class="footer-links">
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms & Conditions</a>
+          <span>|</span>
+          <a href="mailto:info@cuvio.co.uk">info@cuvio.co.uk</a>
+        </div>
+        <p>© 2025 Cuvio. All rights reserved.</p>
+      </div>
+    </footer>
+  </main>
+  <script>
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+    document.querySelectorAll(".fade-in-section").forEach((section) => {
+      observer.observe(section);
+    });
+  </script>
+</body>
+</html>
