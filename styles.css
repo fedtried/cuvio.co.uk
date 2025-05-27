@@ -180,6 +180,17 @@ body {
   opacity: 0.8;
 }
 
+.app-mockup-img {
+  width: 100%;
+  max-width: 160px;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: 0;
+  box-shadow: 0 4px 16px rgba(72, 114, 74, 0.10);
+  border-radius: 16px;
+}
+
 /* Why Cuvio Works Section */
 .why-cuvio {
   background: #E9F3E6;
@@ -339,6 +350,12 @@ body {
   .value-card {
     max-width: 100%;
   }
+
+  .app-mockup-img {
+    max-width: 120px;
+    margin: 24px auto 0 auto;
+    display: block;
+  }
 }
 
 @media (max-width: 600px) {
@@ -369,5 +386,10 @@ body {
 
   .value-card {
     padding: 16px;
+  }
+
+  .app-mockup-img {
+    max-width: 90px;
+    margin: 16px auto 0 auto;
   }
 }

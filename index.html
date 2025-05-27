@@ -5,80 +5,142 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cuvio</title>
   <meta name="description" content="Cuvio - Meal planning made simple, for real life." />
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" href="favicon.ico" />
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <style>
+    :root {
+      --leaf-green: #3A5F3A;
+      --soft-sage: #E2EBD9;
+      --warm-sand: #F5F3E7;
+      --clay-accent: #D9BBA9;
+      --primary-text: #1A2A1A;
+      --secondary-text: #4A5A4A;
+      --background: #F7FBF4;
+      --card-background: #FFFFFF;
+    }
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      scroll-behavior: smooth;
+      background-color: var(--background);
+      color: var(--primary-text);
+    }
+    .fade-in-section {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .fade-in-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .hero-bg {
+      background: linear-gradient(135deg, var(--soft-sage) 0%, var(--warm-sand) 100%);
+    }
+    .why-bg {
+      background-color: var(--card-background);
+    }
+    .footer-bg {
+      background-color: var(--leaf-green);
+      color: #ffffff;
+    }
+    .app-mockup-img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(72, 114, 74, 0.15);
+    }
+    .value-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .value-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(72, 114, 74, 0.15);
+    }
+    .header-bar {
+      transition: background-color 0.3s ease;
+    }
+    .header-bar.scrolled {
+      background-color: rgba(244, 248, 246, 0.95);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    .button-outline:hover {
+      background-color: var(--leaf-green);
+      color: #fff;
+    }
+  </style>
 </head>
-<body class="soft-bg">
-  <header class="header-bar fixed-header">
-    <div class="logo-wrap">
-      <a href="index.html">
-        <img src="Cuvio_Icon.PNG" alt="Cuvio logo" class="logo-img large-logo" />
-      </a>
+<body>
+  <header class="header-bar fixed top-0 left-0 w-full z-50 bg-[#F4F8F6]">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <div class="logo-wrap">
+        <a href="index.html">
+          <img src="Cuvio_Icon.PNG" alt="Cuvio logo" class="h-16 transition-transform hover:scale-105" />
+        </a>
+      </div>
+      <a href="https://apps.apple.com/us/app/cuvio-easy-meal-planning/id6745519272" target="_blank" class="button-outline border-2 border-[var(--leaf-green)] text-[var(--leaf-green)] px-6 py-2 rounded-lg font-semibold text-lg hover:bg-[var(--leaf-green)] hover:text-white transition">Download App</a>
     </div>
-    <a href="https://apps.apple.com/" target="_blank" class="button-outline prominent-btn">Download App</a>
   </header>
 
-  <main class="snap-container">
+  <main class="pt-20">
     <!-- Hero Section -->
-    <section class="hero snap-section hero-bg fade-in-section">
-      <div class="section-content">
-        <div class="hero-text">
-          <h1 class="hero-title">Meal planning made simple,<br>for real life.</h1>
-          <p class="hero-sub">Cuvio helps you plan meals that fit your lifestyle, reduce food waste, and make shopping a breeze.</p>
-          <div class="hero-cta">
-            <span class="cta-text">Mobile app available now</span>
-            <a href="https://apps.apple.com/" target="_blank">
-              <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" class="app-store-badge" />
+    <section class="hero snap-section hero-bg py-20 fade-in-section">
+      <div class="container mx-auto px-4 flex flex-col md:flex-row items-center gap-12">
+        <div class="md:w-1/2 text-center md:text-left">
+          <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-4">Meal planning made simple,<br>for real life.</h1>
+          <p class="text-lg text-[var(--secondary-text)] mb-6 max-w-md mx-auto md:mx-0">Cuvio helps you plan meals that fit your lifestyle, reduce food waste, and make shopping a breeze.</p>
+          <div class="flex items-center justify-center md:justify-start gap-4">
+            <span class="text-[var(--secondary-text)]">Mobile app available now</span>
+            <a href="https://apps.apple.com/us/app/cuvio-easy-meal-planning/id6745519272" target="_blank">
+              <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" class="h-12 transition-transform hover:scale-105" />
             </a>
           </div>
         </div>
-        <div class="hero-img app-mockup-wrapper">
-          <div class="app-mockup-placeholder">
-            <span class="app-mockup-text">App Screenshot</span>
-          </div>
+        <div class="md:w-1/2 flex justify-center">
+          <img src="mockup.png" alt="App Mockup" class="app-mockup-img" />
         </div>
       </div>
     </section>
 
     <!-- Why Cuvio Works Section -->
-    <section class="why-cuvio snap-section why-bg fade-in-section">
-      <div class="section-content">
-        <h2>Why Cuvio Works</h2>
-        <div class="value-cards">
-          <div class="value-card" data-delay="0.1s">
-            <div class="value-icon">1</div>
-            <h3>Personalized Plans</h3>
-            <p>Set your goals & preferences, and Cuvio crafts meal plans tailored to your lifestyle.</p>
+    <section class="why-cuvio snap-section why-bg py-20 fade-in-section">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12">Why Cuvio Works</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="value-card bg-[var(--card-background)] p-6 rounded-lg shadow-md fade-in-section" data-delay="0.1s">
+            <div class="bg-[var(--leaf-green)] text-white rounded-lg w-10 h-10 flex items-center justify-center font-bold text-lg mb-4">1</div>
+            <h3 class="text-xl font-semibold text-[var(--leaf-green)] mb-2">Personalized Plans</h3>
+            <p class="text-[var(--secondary-text)]">Set your goals & preferences, and Cuvio crafts meal plans tailored to your lifestyle.</p>
           </div>
-          <div class="value-card" data-delay="0.3s">
-            <div class="value-icon">2</div>
-            <h3>Smart Shopping</h3>
-            <p>Get custom meal plans and shopping lists to minimize waste and save money.</p>
+          <div class="value-card bg-[var(--card-background)] p-6 rounded-lg shadow-md fade-in-section" data-delay="0.3s">
+            <div class="bg-[var(--leaf-green)] text-white rounded-lg w-10 h-10 flex items-center justify-center font-bold text-lg mb-4">2</div>
+            <h3 class="text-xl font-semibold text-[var(--leaf-green)] mb-2">Smart Shopping</h3>
+            <p class="text-[var(--secondary-text)]">Get custom meal plans and shopping lists to minimize waste and save money.</p>
           </div>
-          <div class="value-card" data-delay="0.5s">
-            <div class="value-icon">3</div>
-            <h3>Stress-Free Meals</h3>
-            <p>Shop, cook, and enjoy delicious meals with simple recipes designed for you.</p>
+          <div class="value-card bg-[var(--card-background)] p-6 rounded-lg shadow-md fade-in-section" data-delay="0.5s">
+            <div class="bg-[var(--leaf-green)] text-white rounded-lg w-10 h-10 flex items-center justify-center font-bold text-lg mb-4">3</div>
+            <h3 class="text-xl font-semibold text-[var(--leaf-green)] mb-2">Stress-Free Meals</h3>
+            <p class="text-[var(--secondary-text)]">Shop, cook, and enjoy delicious meals with simple recipes designed for you.</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Footer Section -->
-    <footer class="footer-section snap-section footer-bg fade-in-section">
-      <div class="section-content" style="flex-direction: column; align-items: center;">
-        <div class="footer-links">
-          <a href="privacy.html">Privacy Policy</a>
-          <a href="terms.html">Terms & Conditions</a>
-          <span>|</span>
-          <a href="mailto:info@cuvio.co.uk">info@cuvio.co.uk</a>
+    <footer class="footer-section snap-section footer-bg py-12 fade-in-section">
+      <div class="container mx-auto px-4 text-center">
+        <div class="flex justify-center gap-4 mb-4">
+          <a href="privacy.html" class="text-gray-200 hover:text-white transition">Privacy Policy</a>
+          <a href="terms.html" class="text-gray-200 hover:text-white transition">Terms & Conditions</a>
+          <span class="text-gray-200">|</span>
+          <a href="mailto:info@cuvio.co.uk" class="text-gray-200 hover:text-white transition">info@cuvio.co.uk</a>
         </div>
-        <p>© 2025 Cuvio. All rights reserved.</p>
+        <p class="text-gray-300">© 2025 Cuvio. All rights reserved.</p>
       </div>
     </footer>
   </main>
 
   <script>
+    // Fade-in animation
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -92,6 +154,16 @@
     );
     document.querySelectorAll(".fade-in-section").forEach((section) => {
       observer.observe(section);
+    });
+
+    // Header scroll effect
+    window.addEventListener("scroll", () => {
+      const header = document.querySelector(".header-bar");
+      if (window.scrollY > 50) {
+        header.classList.add("scrolled");
+      } else {
+        header.classList.remove("scrolled");
+      }
     });
   </script>
 </body>
