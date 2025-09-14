@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meal Planning by Cuvio</title>
+  <meta name="description" content="Transform your meal planning with Cuvio. Personalized meal plans, smart shopping lists, and stress-free cooking - all in one app." />
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <style>
+    :root {
+      --leaf-green: #48724A;
+      --leaf-green-dark: #7FC97F;
+      --soft-sage: #DDE8D2;
+      --soft-sage-dark: #3A3F2E;
+      --warm-sand: #F5F3E7;
+      --warm-sand-dark: #2E3A2F;
+      --clay-accent: #D9BBA9;
+      --clay-accent-dark: #B89B8A;
+      --seasonal-accent: #F6EFD2;
+      --seasonal-accent-dark: #7FC97F;
+      --primary-text: #223322;
+      --primary-text-dark: #F5F3E7;
+      --secondary-text: #5A6B5A;
+      --secondary-text-dark: #B8C2B8;
+      --background: #F7FBF4;
+      --background-dark: #181C18;
+      --card-background: #FFFFFF;
+      --card-background-dark: #232B24;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      scroll-behavior: smooth;
+      background-color: var(--background);
+      color: var(--primary-text);
+    }
+    
+    .hero-gradient {
+      background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 50%, var(--warm-sand) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero-gradient::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 20% 50%, rgba(76, 175, 80, 0.1) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 20%, rgba(255, 107, 53, 0.05) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    
+    .glass-card {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .feature-card {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      background: var(--card-background);
+      border: 1px solid rgba(76, 175, 80, 0.1);
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(45, 80, 22, 0.15);
+      border-color: var(--bright-green);
+    }
+    
+    .cta-button {
+      background: linear-gradient(135deg, var(--leaf-green) 0%, var(--leaf-green-dark) 100%);
+      transform: perspective(1px) translateZ(0);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      letter-spacing: 0.025em;
+      box-shadow: 0 4px 14px 0 rgba(72, 114, 74, 0.25);
+    }
+    
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+    
+    .cta-button:hover::before {
+      left: 100%;
+    }
+    
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px 0 rgba(72, 114, 74, 0.4);
+      background: linear-gradient(135deg, var(--leaf-green-dark) 0%, var(--leaf-green) 100%);
+    }
+    
+    .cta-button:active {
+      transform: translateY(0);
+      box-shadow: 0 4px 14px 0 rgba(72, 114, 74, 0.25);
+    }
+    
+    .floating-elements {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    
+    .floating-icon {
+      position: absolute;
+      opacity: 0.1;
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    .floating-icon:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+    .floating-icon:nth-child(2) { top: 60%; left: 85%; animation-delay: 2s; }
+    .floating-icon:nth-child(3) { top: 80%; left: 20%; animation-delay: 4s; }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(5deg); }
+    }
+    
+    .fade-in-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .fade-in-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .stagger-1 { transition-delay: 0.1s; }
+    .stagger-2 { transition-delay: 0.2s; }
+    .stagger-3 { transition-delay: 0.3s; }
+    
+    .header-blur {
+      backdrop-filter: blur(10px);
+      background: rgba(250, 255, 254, 0.9);
+      transition: all 0.3s ease;
+    }
+    
+    .phone-mockup {
+      position: relative;
+      z-index: 2;
+    }
+    
+    .mockup-glow {
+      position: absolute;
+      inset: -20px;
+      background: linear-gradient(45deg, var(--bright-green), var(--clay-accent));
+      border-radius: 30px;
+      opacity: 0.2;
+      filter: blur(20px);
+      z-index: 1;
+    }
+    
+    .stats-section {
+      background: linear-gradient(to right, var(--leaf-green), var(--bright-green));
+    }
+    
+    .testimonial-card {
+      background: var(--card-background);
+      border-left: 4px solid var(--bright-green);
+    }
+    
+    .pulse-dot {
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    
+    .scroll-indicator {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: bounce 2s infinite;
+    }
+    
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+      40% { transform: translateX(-50%) translateY(-10px); }
+      60% { transform: translateX(-50%) translateY(-5px); }
+    }
+    
+    @media (max-width: 768px) {
+      .hero-gradient { padding-top: 2rem; }
+      .feature-card:hover { transform: none; }
+    }
+    
+    /* Custom Cuvio color classes */
+    .text-cuvio-primary { color: var(--primary-text); }
+    .text-cuvio-secondary { color: var(--secondary-text); }
+    .text-cuvio-accent { color: var(--leaf-green); }
+    .text-cuvio-accent-hover:hover { color: var(--leaf-green-dark); }
+    .text-cuvio-light { color: var(--soft-sage); }
+    .text-cuvio-white { color: white; }
+    
+    .bg-cuvio-primary { background-color: var(--primary-text); }
+    .bg-cuvio-secondary { background-color: var(--secondary-text); }
+    .bg-cuvio-accent { background-color: var(--leaf-green); }
+    .bg-cuvio-accent-hover:hover { background-color: var(--leaf-green-dark); }
+    .bg-cuvio-light { background-color: var(--soft-sage); }
+    .bg-cuvio-card { background-color: var(--card-background); }
+    .bg-cuvio-section { background-color: var(--warm-sand); }
+    .bg-cuvio-footer { background-color: var(--background-dark); }
+    
+    .bg-gradient-cuvio { background: linear-gradient(135deg, var(--leaf-green) 0%, var(--leaf-green-dark) 100%); }
+    .bg-gradient-cuvio-reverse { background: linear-gradient(135deg, var(--leaf-green-dark) 0%, var(--leaf-green) 100%); }
+    
+    .border-cuvio-accent { border-color: var(--leaf-green); }
+    .border-cuvio-accent-hover:hover { border-color: var(--leaf-green-dark); }
+    
+    .text-gradient-cuvio { 
+      background: linear-gradient(135deg, var(--leaf-green) 0%, var(--leaf-green-dark) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="fixed top-0 left-0 w-full z-50 header-blur">
+    <div class="container mx-auto px-4 py-4">
+      <div class="flex justify-between items-center">
+        <div class="flex items-center space-x-2">
+          <a href="index.html" class="flex items-center space-x-2 hover:opacity-80 transition-opacity">
+            <div class="w-10 h-10 bg-gradient-cuvio rounded-lg flex items-center justify-center">
+              <span class="text-cuvio-white font-bold text-lg">C</span>
+            </div>
+            <span class="text-xl font-bold text-cuvio-primary">Cuvio</span>
+          </a>
+        </div>
+        
+        <nav class="hidden md:flex items-center space-x-8">
+          <a href="#features" class="text-cuvio-secondary text-cuvio-accent-hover transition">Features</a>
+          <a href="#how-it-works" class="text-cuvio-secondary text-cuvio-accent-hover transition">How it Works</a>
+          <a href="#download" class="cta-button text-cuvio-white px-6 py-2 rounded-lg font-semibold">
+            Get Started Free
+          </a>
+        </nav>
+        
+        <button class="md:hidden p-2">
+          <div class="w-6 h-0.5 bg-cuvio-secondary mb-1"></div>
+          <div class="w-6 h-0.5 bg-cuvio-secondary mb-1"></div>
+          <div class="w-6 h-0.5 bg-cuvio-secondary"></div>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="pt-16">
+    <!-- Hero Section -->
+    <section class="hero-gradient min-h-screen flex items-center relative">
+      <div class="floating-elements">
+        <div class="floating-icon text-6xl">🥗</div>
+        <div class="floating-icon text-5xl">🛒</div>
+        <div class="floating-icon text-4xl">📱</div>
+      </div>
+      
+      <div class="container mx-auto px-4 py-20">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <div class="fade-in-up text-center lg:text-left">
+            <div class="inline-flex items-center space-x-2 bg-cuvio-light text-cuvio-accent px-4 py-2 rounded-full text-sm font-medium mb-6">
+              <span class="pulse-dot w-2 h-2 bg-cuvio-accent rounded-full"></span>
+              <span>New: AI Sous-Chef</span>
+            </div>
+            
+            <div class="flex items-center justify-center lg:justify-start mb-6">
+              <img src="cuvio.png" alt="Cuvio Mascot" class="w-16 h-16 mr-4 rounded-full shadow-lg" />
+              <h1 class="text-5xl lg:text-6xl font-bold leading-tight">
+                Meal Planning
+                <span class="text-gradient-cuvio">
+                  by Cuvio
+                </span>
+              </h1>
+            </div>
+            
+            <p class="text-xl text-cuvio-secondary mb-8 max-w-lg mx-auto lg:mx-0 leading-relaxed">
+              Transform your kitchen chaos into culinary confidence. Personalized meal plans, smart shopping lists, and stress-free cooking—all in one intelligent app.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-8">
+              <a href="#download" class="cta-button text-cuvio-white px-10 py-5 rounded-2xl font-bold text-xl w-full sm:w-auto text-center shadow-lg hover:shadow-xl transition-all duration-300">
+                🚀 Start Planning Today
+              </a>
+              
+            </div>
+            
+            <div class="flex items-center justify-center lg:justify-start space-x-6 text-sm text-cuvio-secondary">
+              <div>Free to Start</div>
+            </div>
+          </div>
+          
+          <div class="fade-in-up stagger-1 flex justify-center relative">
+            <div class="phone-mockup relative">
+              <div class="mockup-glow"></div>
+              <img src="mockup.png" alt="Cuvio App Interface" class="relative z-10 max-w-sm w-full rounded-3xl shadow-2xl" />
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="scroll-indicator">
+        <div class="w-6 h-10 border-2 border-cuvio-secondary rounded-full flex justify-center">
+          <div class="w-1 h-3 bg-cuvio-secondary rounded-full mt-2 animate-bounce"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Section
+    <section class="stats-section py-16 text-white">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+          <div class="fade-in-up">
+            <div class="text-4xl font-bold mb-2">10K+</div>
+            <div class="text-green-100">Happy Users</div>
+          </div>
+          <div class="fade-in-up stagger-1">
+            <div class="text-4xl font-bold mb-2">2M+</div>
+            <div class="text-green-100">Meals Planned</div>
+          </div>
+          <div class="fade-in-up stagger-2">
+            <div class="text-4xl font-bold mb-2">30%</div>
+            <div class="text-green-100">Food Waste Reduced</div>
+          </div>
+          <div class="fade-in-up stagger-3">
+            <div class="text-4xl font-bold mb-2">4.8★</div>
+            <div class="text-green-100">App Store Rating</div>
+          </div>
+        </div>
+      </div>
+    </section> -->
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-cuvio-section">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16 fade-in-up">
+          <h2 class="text-4xl font-bold mb-4">Why Cuvio Changes Everything</h2>
+          <p class="text-xl text-cuvio-secondary max-w-2xl mx-auto">
+            Stop letting cooking stress you out. Our intelligent app adapts to your lifestyle, preferences, and goals.
+          </p>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="feature-card p-8 rounded-2xl fade-in-up">
+            <div class="w-16 h-16 bg-gradient-cuvio rounded-2xl flex items-center justify-center text-cuvio-white text-2xl mb-6">
+              🎯
+            </div>
+            <h3 class="text-2xl font-bold text-cuvio-primary mb-4">AI-Powered Personalization</h3>
+            <p class="text-cuvio-secondary mb-6 leading-relaxed">
+              Our AI Sous-Chef accomodates your dietary restrictions, and considers your cooking skills to suggest perfect meals every time.
+            </p>
+            <ul class="space-y-2 text-sm text-cuvio-secondary">
+              <li class="flex items-center"><span class="text-cuvio-accent mr-2">✓</span> Dietary preference tracking</li>
+              <li class="flex items-center"><span class="text-cuvio-accent mr-2">✓</span> Ingredient substitutions</li>
+              <li class="flex items-center"><span class="text-cuvio-accent mr-2">✓</span> Skill-based instructions</li>
+            </ul>
+          </div>
+          
+          <div class="feature-card p-8 rounded-2xl fade-in-up stagger-1">
+            <div class="w-16 h-16 bg-gradient-cuvio rounded-2xl flex items-center justify-center text-cuvio-white text-2xl mb-6">
+              🛒
+            </div>
+            <h3 class="text-2xl font-bold text-cuvio-primary mb-4">Smart Shopping Lists</h3>
+            <p class="text-cuvio-secondary mb-6 leading-relaxed">
+              Automatically generated shopping lists that minimize waste, save money, and help you organize your shopping.
+            </p>
+            <ul class="space-y-2 text-sm text-cuvio-secondary">
+              <li class="flex items-center"><span class="text-cuvio-accent mr-2">✓</span> Automatically scaled for your household</li>
+              <li class="flex items-center"><span class="text-cuvio-accent mr-2">✓</span> Quickly check off items as you shop</li>
+              <li class="flex items-center"><span class="text-cuvio-accent mr-2">✓</span> Recipes that include multiple ingredients for reduced shopping costs</li>
+            </ul>
+          </div>
+          
+          <div class="feature-card p-8 rounded-2xl fade-in-up stagger-2">
+            <div class="w-16 h-16 bg-gradient-cuvio rounded-2xl flex items-center justify-center text-cuvio-white text-2xl mb-6">
+              ⚡
+            </div>
+            <h3 class="text-2xl font-bold text-cuvio-primary mb-4">Effortless Cooking</h3>
+            <p class="text-cuvio-secondary mb-6 leading-relaxed">
+              Step-by-step success with your sous-chef, Cuvio.
+            </p>
+            <ul class="space-y-2 text-sm text-cuvio-secondary">
+              <li class="flex items-center"><span class="text-cuvio-accent mr-2">✓</span> Ask for help at any time</li>
+              <li class="flex items-center"><span class="text-cuvio-accent mr-2">✓</span> Get suggestions for alternatives using your ingredients</li>
+              <li class="flex items-center"><span class="text-cuvio-accent mr-2">✓</span> Ask for tips and tricks</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="py-20">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16 fade-in-up">
+          <h2 class="text-4xl font-bold mb-4">How Cuvio Works</h2>
+          <p class="text-xl text-cuvio-secondary">Three simple steps to transform your meal planning</p>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-12 items-start">
+          <div class="text-center fade-in-up">
+            <div class="w-20 h-20 bg-gradient-cuvio rounded-full flex items-center justify-center text-cuvio-white text-2xl font-bold mx-auto mb-6">
+              1
+            </div>
+            <h3 class="text-xl font-bold mb-4">Set Your Preferences</h3>
+            <p class="text-cuvio-secondary">Tell us about your dietary needs, cooking skills, and food preferences. Takes less than 2 minutes.</p>
+          </div>
+          
+          <div class="text-center fade-in-up stagger-1">
+            <div class="w-20 h-20 bg-gradient-cuvio rounded-full flex items-center justify-center text-cuvio-white text-2xl font-bold mx-auto mb-6">
+              2
+            </div>
+            <h3 class="text-xl font-bold mb-4">Get Your Plan</h3>
+            <p class="text-cuvio-secondary">Receive personalized weekly meal plans with recipes, shopping lists, and prep instructions.</p>
+          </div>
+          
+          <div class="text-center fade-in-up stagger-2">
+            <div class="w-20 h-20 bg-gradient-cuvio rounded-full flex items-center justify-center text-cuvio-white text-2xl font-bold mx-auto mb-6">
+              3
+            </div>
+            <h3 class="text-xl font-bold mb-4">Cook & Enjoy</h3>
+            <p class="text-cuvio-secondary">Follow guided cooking instructions and enjoy delicious, stress-free meals with your family.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials
+    <section class="py-20 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16 fade-in-up">
+          <h2 class="text-4xl font-bold mb-4">What Our Users Say</h2>
+        </div>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="testimonial-card p-6 rounded-xl shadow-md fade-in-up">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white font-bold mr-4">
+                S
+              </div>
+              <div>
+                <div class="font-semibold">Sarah M.</div>
+                <div class="text-sm text-gray-500">Busy Mom of 3</div>
+              </div>
+            </div>
+            <p class="text-gray-600 italic">"Cuvio saved my sanity! No more 5pm panic about dinner. My kids actually eat the meals, and I feel organized for the first time in years."</p>
+          </div>
+          
+          <div class="testimonial-card p-6 rounded-xl shadow-md fade-in-up stagger-1">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold mr-4">
+                M
+              </div>
+              <div>
+                <div class="font-semibold">Mike R.</div>
+                <div class="text-sm text-gray-500">Working Professional</div>
+              </div>
+            </div>
+            <p class="text-gray-600 italic">"I was spending £200+ weekly on groceries and still wasting food. Now I spend £120 and nothing goes to waste. The ROI is incredible!"</p>
+          </div>
+          
+          <div class="testimonial-card p-6 rounded-xl shadow-md fade-in-up stagger-2">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold mr-4">
+                A
+              </div>
+              <div>
+                <div class="font-semibold">Anna K.</div>
+                <div class="text-sm text-gray-500">Health Enthusiast</div>
+              </div>
+            </div>
+            <p class="text-gray-600 italic">"The app learns what I like and suggests healthier alternatives. I've discovered so many new recipes and actually look forward to cooking now!"</p>
+          </div>
+        </div>
+      </div>
+    </section> -->
+
+    <!-- CTA Section -->
+    <section id="download" class="py-20 bg-gradient-cuvio text-cuvio-white">
+      <div class="container mx-auto px-4 text-center">
+        <div class="max-w-3xl mx-auto fade-in-up">
+          <h2 class="text-4xl font-bold mb-6">Ready to Transform Your Meal Planning?</h2>
+          <p class="text-xl mb-8 opacity-90">
+            Start your free trial today.
+          </p>
+          
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
+            <a href="https://apps.apple.com/us/app/cuvio-easy-meal-planning/id6745519272" target="_blank" class="inline-block">
+              <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" class="h-14 transition-transform hover:scale-105" />
+            </a>
+            <div class="bg-cuvio-white bg-opacity-20 rounded-xl p-4">
+              <div class="text-sm opacity-80">Coming Soon</div>
+              <div class="font-semibold">Google Play Store</div>
+            </div>
+          </div>
+          
+          <div class="text-sm opacity-75">
+            ✓ Free 3-day trial • ✓ No credit card required • ✓ Cancel anytime
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-cuvio-footer text-cuvio-white py-16">
+      <div class="container mx-auto px-4">
+        <div class="grid md:grid-cols-4 gap-8">
+          <div>
+            <div class="flex items-center space-x-2 mb-4">
+              <div class="w-8 h-8 bg-gradient-cuvio rounded-lg flex items-center justify-center">
+                <span class="text-cuvio-white font-bold">C</span>
+              </div>
+              <span class="text-xl font-bold">Cuvio</span>
+            </div>
+            <p class="text-cuvio-secondary mb-4">Making meal planning simple one step at a time..</p>
+            <div class="flex space-x-4">
+              <div class="w-8 h-8 bg-cuvio-secondary rounded-full flex items-center justify-center bg-cuvio-accent-hover transition cursor-pointer">
+                <a href="mailto:info@cuvio.co.uk">
+                  📧
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          <div>
+            <h4 class="font-semibold mb-4">Product</h4>
+            <ul class="space-y-2 text-cuvio-secondary">
+              <li><a href="#features" class="hover:text-cuvio-white transition">Features</a></li>
+            </ul>
+          </div>
+          
+          <div>
+            <h4 class="font-semibold mb-4">Support</h4>
+            <ul class="space-y-2 text-cuvio-secondary">
+              <li><a href="mailto:info@cuvio.co.uk" class="hover:text-cuvio-white transition">Contact Us</a></li>
+            </ul>
+          </div>
+          
+          <div>
+            <h4 class="font-semibold mb-4">Legal</h4>
+            <ul class="space-y-2 text-cuvio-secondary">
+              <li><a href="privacy.html" class="hover:text-cuvio-white transition">Privacy Policy</a></li>
+              <li><a href="terms.html" class="hover:text-cuvio-white transition">Terms of Service</a></li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="border-t border-cuvio-secondary mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+          <p class="text-cuvio-secondary text-sm">© 2025 Cuvio. All rights reserved.</p>
+          <p class="text-cuvio-secondary text-sm mt-4 md:mt-0">Made with ❤️ for busy people</p>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // Intersection Observer for animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    // Observe all elements with fade-in animations
+    document.querySelectorAll('.fade-in-up').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Header scroll effect
+    let lastScrollTop = 0;
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('header');
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      
+      if (scrollTop > 100) {
+        header.style.transform = scrollTop > lastScrollTop ? 'translateY(-100%)' : 'translateY(0)';
+      } else {
+        header.style.transform = 'translateY(0)';
+      }
+      
+      lastScrollTop = scrollTop;
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Mobile menu toggle (basic implementation)
+    const mobileMenuButton = document.querySelector('button');
+    mobileMenuButton?.addEventListener('click', () => {
+      // Add mobile menu functionality here
+      console.log('Mobile menu clicked');
+    });
+  </script>
+</body>
+</html>

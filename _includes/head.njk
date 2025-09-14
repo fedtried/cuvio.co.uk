@@ -1,0 +1,321 @@
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- Primary Meta Tags -->
+  <title>{{ title or "Cuvio: AI Meal Planner for Busy People | Reduce Food Waste" }}</title>
+  <meta name="description" content="{{ description or 'Transform your meal planning with Cuvio\'s AI meal planner. Generate recipes from ingredients you have, reduce food waste, and save time with personalized weekly meal plans for busy people.' }}" />
+  <meta name="author" content="{{ site.author }}" />
+  <meta name="robots" content="index, follow" />
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="{{ canonical | default(site.url) }}{{ page.url }}" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="{{ canonical | default(site.url) }}{{ page.url }}" />
+  <meta property="og:title" content="{{ ogTitle or title or 'Cuvio: AI Meal Planner for Busy People' }}" />
+  <meta property="og:description" content="{{ ogDescription or description or 'Transform your meal planning with Cuvio\'s AI meal planner. Generate recipes from ingredients you have, reduce food waste, and save time.' }}" />
+  <meta property="og:image" content="{{ ogImage | default(site.url + "/icon.png") }}" />
+  <meta property="og:site_name" content="{{ site.title }}" />
+  <meta property="og:locale" content="en_GB" />
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="{{ canonical | default(site.url) }}{{ page.url }}" />
+  <meta property="twitter:title" content="{{ ogTitle or title or 'Cuvio: AI Meal Planner for Busy People' }}" />
+  <meta property="twitter:description" content="{{ ogDescription or description or 'Transform your meal planning with Cuvio\'s AI meal planner. Generate recipes from ingredients you have, reduce food waste, and save time.' }}" />
+  <meta property="twitter:image" content="{{ ogImage | default(site.url + "/icon.png") }}" />
+  
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="/icon.png" />
+  
+  <!-- Preconnect to external domains -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+  <!-- Critical CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Cuvio",
+    "description": "AI meal planner for busy people who want to generate recipes and weekly meal plans from what they already have in their fridge",
+    "url": "{{ site.url }}",
+    "applicationCategory": "LifestyleApplication",
+    "operatingSystem": "iOS, Android",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "GBP",
+      "availability": "https://schema.org/InStock"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "ratingCount": "150"
+    },
+    "screenshot": "{{ site.url }}/mockup.png",
+    "author": {
+      "@type": "Organization",
+      "name": "{{ site.author }}",
+      "url": "{{ site.url }}"
+    }
+  }
+  </script>
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "{{ site.title }}",
+    "url": "{{ site.url }}",
+    "description": "{{ site.description }}",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "{{ site.url }}/search?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+  
+  <!-- Custom CSS -->
+  <style>
+    :root {
+      --leaf-green: #48724A;
+      --leaf-green-dark: #7FC97F;
+      --soft-sage: #DDE8D2;
+      --soft-sage-dark: #3A3F2E;
+      --warm-sand: #F5F3E7;
+      --warm-sand-dark: #2E3A2F;
+      --clay-accent: #D9BBA9;
+      --clay-accent-dark: #B89B8A;
+      --seasonal-accent: #F6EFD2;
+      --seasonal-accent-dark: #7FC97F;
+      --primary-text: #223322;
+      --primary-text-dark: #F5F3E7;
+      --secondary-text: #5A6B5A;
+      --secondary-text-dark: #B8C2B8;
+      --background: #F7FBF4;
+      --background-dark: #181C18;
+      --card-background: #FFFFFF;
+      --card-background-dark: #232B24;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      scroll-behavior: smooth;
+      background-color: var(--background);
+      color: var(--primary-text);
+    }
+    
+    .hero-gradient {
+      background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 50%, var(--warm-sand) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero-gradient::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 20% 50%, rgba(76, 175, 80, 0.1) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 20%, rgba(255, 107, 53, 0.05) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    
+    .glass-card {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .feature-card {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      background: var(--card-background);
+      border: 1px solid rgba(76, 175, 80, 0.1);
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(45, 80, 22, 0.15);
+      border-color: var(--bright-green);
+    }
+    
+    .cta-button {
+      background: linear-gradient(135deg, var(--leaf-green) 0%, var(--leaf-green-dark) 100%);
+      transform: perspective(1px) translateZ(0);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      letter-spacing: 0.025em;
+      box-shadow: 0 4px 14px 0 rgba(72, 114, 74, 0.25);
+    }
+    
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+    
+    .cta-button:hover::before {
+      left: 100%;
+    }
+    
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px 0 rgba(72, 114, 74, 0.4);
+      background: linear-gradient(135deg, var(--leaf-green-dark) 0%, var(--leaf-green) 100%);
+    }
+    
+    .cta-button:active {
+      transform: translateY(0);
+      box-shadow: 0 4px 14px 0 rgba(72, 114, 74, 0.25);
+    }
+    
+    .floating-elements {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    
+    .floating-icon {
+      position: absolute;
+      opacity: 0.1;
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    .floating-icon:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+    .floating-icon:nth-child(2) { top: 60%; left: 85%; animation-delay: 2s; }
+    .floating-icon:nth-child(3) { top: 80%; left: 20%; animation-delay: 4s; }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(5deg); }
+    }
+    
+    .fade-in-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .fade-in-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .stagger-1 { transition-delay: 0.1s; }
+    .stagger-2 { transition-delay: 0.2s; }
+    .stagger-3 { transition-delay: 0.3s; }
+    
+    .header-blur {
+      backdrop-filter: blur(10px);
+      background: rgba(250, 255, 254, 0.9);
+      transition: all 0.3s ease;
+    }
+    
+    .phone-mockup {
+      position: relative;
+      z-index: 2;
+    }
+    
+    .mockup-glow {
+      position: absolute;
+      inset: -20px;
+      background: linear-gradient(45deg, var(--bright-green), var(--clay-accent));
+      border-radius: 30px;
+      opacity: 0.2;
+      filter: blur(20px);
+      z-index: 1;
+    }
+    
+    .stats-section {
+      background: linear-gradient(to right, var(--leaf-green), var(--bright-green));
+    }
+    
+    .testimonial-card {
+      background: var(--card-background);
+      border-left: 4px solid var(--bright-green);
+    }
+    
+    .pulse-dot {
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    
+    .scroll-indicator {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: bounce 2s infinite;
+    }
+    
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+      40% { transform: translateX(-50%) translateY(-10px); }
+      60% { transform: translateX(-50%) translateY(-5px); }
+    }
+    
+    @media (max-width: 768px) {
+      .hero-gradient { padding-top: 2rem; }
+      .feature-card:hover { transform: none; }
+    }
+    
+    /* Custom Cuvio color classes */
+    .text-cuvio-primary { color: var(--primary-text); }
+    .text-cuvio-secondary { color: var(--secondary-text); }
+    .text-cuvio-accent { color: var(--leaf-green); }
+    .text-cuvio-accent-hover:hover { color: var(--leaf-green-dark); }
+    .text-cuvio-light { color: var(--soft-sage); }
+    .text-cuvio-white { color: white; }
+    
+    .bg-cuvio-primary { background-color: var(--primary-text); }
+    .bg-cuvio-secondary { background-color: var(--secondary-text); }
+    .bg-cuvio-accent { background-color: var(--leaf-green); }
+    .bg-cuvio-accent-hover:hover { background-color: var(--leaf-green-dark); }
+    .bg-cuvio-light { background-color: var(--soft-sage); }
+    .bg-cuvio-card { background-color: var(--card-background); }
+    .bg-cuvio-section { background-color: var(--warm-sand); }
+    .bg-cuvio-footer { background-color: var(--background-dark); }
+    
+    .bg-gradient-cuvio { background: linear-gradient(135deg, var(--leaf-green) 0%, var(--leaf-green-dark) 100%); }
+    .bg-gradient-cuvio-reverse { background: linear-gradient(135deg, var(--leaf-green-dark) 0%, var(--leaf-green) 100%); }
+    
+    .border-cuvio-accent { border-color: var(--leaf-green); }
+    .border-cuvio-accent-hover:hover { border-color: var(--leaf-green-dark); }
+    
+    .text-gradient-cuvio { 
+      background: linear-gradient(135deg, var(--leaf-green) 0%, var(--leaf-green-dark) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+  </style>
+</head>

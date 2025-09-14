@@ -1,0 +1,29 @@
+{
+  "name": "cuvio-website",
+  "version": "1.0.0",
+  "description": "Cuvio AI meal planner website",
+  "main": ".eleventy.js",
+  "scripts": {
+    "build": "eleventy",
+    "serve": "eleventy --serve",
+    "start": "eleventy --serve",
+    "clean": "rm -rf _site"
+  },
+  "keywords": [
+    "meal-planning",
+    "ai",
+    "recipes",
+    "food-waste",
+    "cooking"
+  ],
+  "author": "Cuvio",
+  "license": "MIT",
+  "devDependencies": {
+    "@11ty/eleventy": "^2.0.1"
+  },
+  "dependencies": {
+    "@11ty/eleventy-img": "^6.0.4",
+    "clean-css-cli": "^5.6.2",
+    "html-minifier-terser": "^7.2.0"
+  }
+}
