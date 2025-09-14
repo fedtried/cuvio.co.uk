@@ -1,0 +1,116 @@
+name: Build and Deploy Cuvio Site
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: |
+        npm install -g @11ty/eleventy
+        npm install
+        
+    - name: Build site
+      run: npx @11ty/eleventy
+      
+    - name: Generate sitemap
+      run: |
+        npx @11ty/eleventy --formats=html --output=_site
+        # Generate sitemap.xml
+        echo '<?xml version="1.0" encoding="UTF-8"?>' > _site/sitemap.xml
+        echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' >> _site/sitemap.xml
+        echo '  <url>' >> _site/sitemap.xml
+        echo '    <loc>https://cuvio.co.uk/</loc>' >> _site/sitemap.xml
+        echo '    <lastmod>'$(date -u +%Y-%m-%d)'</lastmod>' >> _site/sitemap.xml
+        echo '    <changefreq>weekly</changefreq>' >> _site/sitemap.xml
+        echo '    <priority>1.0</priority>' >> _site/sitemap.xml
+        echo '  </url>' >> _site/sitemap.xml
+        echo '  <url>' >> _site/sitemap.xml
+        echo '    <loc>https://cuvio.co.uk/recipes/</loc>' >> _site/sitemap.xml
+        echo '    <lastmod>'$(date -u +%Y-%m-%d)'</lastmod>' >> _site/sitemap.xml
+        echo '    <changefreq>monthly</changefreq>' >> _site/sitemap.xml
+        echo '    <priority>0.8</priority>' >> _site/sitemap.xml
+        echo '  </url>' >> _site/sitemap.xml
+        echo '</urlset>' >> _site/sitemap.xml
+        
+    - name: Generate robots.txt
+      run: |
+        echo 'User-agent: *' > _site/robots.txt
+        echo 'Allow: /' >> _site/robots.txt
+        echo 'Sitemap: https://cuvio.co.uk/sitemap.xml' >> _site/robots.txt
+        
+    - name: Optimize images
+      run: |
+        # Install image optimization tools
+        sudo apt-get update
+        sudo apt-get install -y webp
+        
+        # Convert PNG to WebP
+        find _site -name "*.png" -exec cwebp -q 80 {} -o {}.webp \;
+        
+        # Create responsive image sets
+        find _site -name "*.png" -not -name "favicon*" | while read img; do
+          base="${img%.*}"
+          # Generate different sizes
+          cwebp -q 80 -resize 400 0 "$img" -o "${base}-400.webp"
+          cwebp -q 80 -resize 800 0 "$img" -o "${base}-800.webp"
+          cwebp -q 80 -resize 1200 0 "$img" -o "${base}-1200.webp"
+        done
+        
+    - name: Minify HTML and CSS
+      run: |
+        # Minify HTML files using local dependencies
+        find _site -name "*.html" -exec npx html-minifier-terser --collapse-whitespace --remove-comments --minify-css --minify-js {} -o {} \;
+        
+        # Minify CSS files using local dependencies
+        find _site -name "*.css" -exec npx cleancss -o {} {} \;
+        
+    - name: Run Lighthouse CI (Optional)
+      continue-on-error: true
+      run: |
+        # Start local server
+        npx @11ty/eleventy --serve --port=8080 &
+        SERVER_PID=$!
+        sleep 10
+        
+        # Run basic lighthouse test
+        npx lhci autorun --config=.lighthouserc.json || echo "Lighthouse CI completed with warnings"
+        
+        # Kill the server
+        kill $SERVER_PID 2>/dev/null || true
+        
+    - name: Deploy to GitHub Pages
+      if: github.ref == 'refs/heads/main'
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./_site
+        cname: cuvio.co.uk
+        
+    - name: Check for broken links
+      if: github.event_name == 'pull_request'
+      run: |
+        # Install link checker
+        npm install -g broken-link-checker
+        
+        # Start local server for link checking
+        npx @11ty/eleventy --serve --port=8080 &
+        sleep 10
+        
+        # Check for broken internal links
+        blc http://localhost:8080 -ro --exclude-external --exclude-mailto --exclude-tel

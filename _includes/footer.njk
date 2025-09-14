@@ -1,0 +1,66 @@
+<!-- Footer -->
+<footer class="bg-cuvio-footer text-cuvio-white py-16">
+  <div class="container mx-auto px-4">
+    <div class="grid md:grid-cols-4 gap-8">
+      <div>
+        <div class="flex items-center space-x-2 mb-4">
+          <div class="w-8 h-8 bg-gradient-cuvio rounded-lg flex items-center justify-center">
+            <span class="text-cuvio-white font-bold">C</span>
+          </div>
+          <span class="text-xl font-bold">Cuvio</span>
+        </div>
+        <p class="text-cuvio-secondary mb-4">Making meal planning simple one step at a time.</p>
+        <div class="flex space-x-3">
+          <a href="mailto:{{ site.email }}" class="w-8 h-8 bg-cuvio-secondary rounded-full flex items-center justify-center hover:bg-cuvio-accent-hover transition cursor-pointer" aria-label="Contact us via email">
+            <i class="fas fa-envelope text-sm"></i>
+          </a>
+          <a href="{{ site.social.facebook }}" target="_blank" rel="noopener" class="w-8 h-8 bg-cuvio-secondary rounded-full flex items-center justify-center hover:bg-cuvio-accent-hover transition cursor-pointer" aria-label="Follow us on Facebook">
+            <i class="fab fa-facebook-f text-sm"></i>
+          </a>
+          <a href="{{ site.social.medium }}" target="_blank" rel="noopener" class="w-8 h-8 bg-cuvio-secondary rounded-full flex items-center justify-center hover:bg-cuvio-accent-hover transition cursor-pointer" aria-label="Follow us on Medium">
+            <i class="fab fa-medium-m text-sm"></i>
+          </a>
+          <a href="{{ site.social.instagram }}" target="_blank" rel="noopener" class="w-8 h-8 bg-cuvio-secondary rounded-full flex items-center justify-center hover:bg-cuvio-accent-hover transition cursor-pointer" aria-label="Follow us on Instagram">
+            <i class="fab fa-instagram text-sm"></i>
+          </a>
+          <a href="{{ site.social.tiktok }}" target="_blank" rel="noopener" class="w-8 h-8 bg-cuvio-secondary rounded-full flex items-center justify-center hover:bg-cuvio-accent-hover transition cursor-pointer" aria-label="Follow us on TikTok">
+            <i class="fab fa-tiktok text-sm"></i>
+          </a>
+        </div>
+      </div>
+      
+      <div>
+        <h4 class="font-semibold mb-4">Product</h4>
+        <ul class="space-y-2 text-cuvio-secondary">
+          <li><a href="/features/" class="hover:text-cuvio-white transition">Features</a></li>
+          <li><a href="/personas/" class="hover:text-cuvio-white transition">Personas</a></li>
+          <li><a href="/nutrition/" class="hover:text-cuvio-white transition">Nutrition</a></li>
+          <li><a href="/recipes/" class="hover:text-cuvio-white transition">Recipes by Ingredients</a></li>
+          <li><a href="/meal-plans/" class="hover:text-cuvio-white transition">Weekly Meal Plans</a></li>
+        </ul>
+      </div>
+      
+      <div>
+        <h4 class="font-semibold mb-4">Support</h4>
+        <ul class="space-y-2 text-cuvio-secondary">
+          <li><a href="mailto:{{ site.email }}" class="hover:text-cuvio-white transition">Contact Us</a></li>
+          <li><a href="/help/" class="hover:text-cuvio-white transition">Help Center</a></li>
+          <li><a href="/faq/" class="hover:text-cuvio-white transition">FAQ</a></li>
+        </ul>
+      </div>
+      
+      <div>
+        <h4 class="font-semibold mb-4">Legal</h4>
+        <ul class="space-y-2 text-cuvio-secondary">
+          <li><a href="/privacy/" class="hover:text-cuvio-white transition">Privacy Policy</a></li>
+          <li><a href="/terms/" class="hover:text-cuvio-white transition">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="border-t border-cuvio-secondary mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+      <p class="text-cuvio-secondary text-sm">© 2025 {{ site.title }}. All rights reserved.</p>
+      <p class="text-cuvio-secondary text-sm mt-4 md:mt-0">Made with <i class="fas fa-heart text-red-500"></i> for busy people</p>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,42 @@
+<!-- Header -->
+<header class="fixed top-0 left-0 w-full z-50 header-blur">
+  <div class="container mx-auto px-4 py-4">
+    <div class="flex justify-between items-center">
+      <div class="flex items-center space-x-2">
+        <a href="/" class="flex items-center space-x-2 hover:opacity-80 transition-opacity">
+          <img src="/icon.png" alt="Cuvio" class="w-10 h-10 rounded-lg" />
+          <span class="text-xl font-bold text-cuvio-primary">Cuvio</span>
+        </a>
+      </div>
+      
+      <nav class="hidden md:flex items-center space-x-8">
+        <a href="/features/" class="text-cuvio-secondary text-cuvio-accent-hover transition">Features</a>
+        <a href="/personas/" class="text-cuvio-secondary text-cuvio-accent-hover transition">Personas</a>
+        <a href="/nutrition/" class="text-cuvio-secondary text-cuvio-accent-hover transition">Nutrition</a>
+        <a href="/recipes/" class="text-cuvio-secondary text-cuvio-accent-hover transition">Recipes</a>
+        <a href="#download" class="cta-button text-cuvio-white px-6 py-2 rounded-lg font-semibold">
+          Get Started Free
+        </a>
+      </nav>
+      
+      <button class="md:hidden p-2" id="mobile-menu-toggle" aria-label="Toggle mobile menu">
+        <div class="w-6 h-0.5 bg-cuvio-secondary mb-1"></div>
+        <div class="w-6 h-0.5 bg-cuvio-secondary mb-1"></div>
+        <div class="w-6 h-0.5 bg-cuvio-secondary"></div>
+      </button>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div class="md:hidden hidden mt-4" id="mobile-menu">
+      <nav class="flex flex-col space-y-4 py-4">
+        <a href="/features/" class="text-cuvio-secondary text-cuvio-accent-hover transition py-2">Features</a>
+        <a href="/personas/" class="text-cuvio-secondary text-cuvio-accent-hover transition py-2">Personas</a>
+        <a href="/nutrition/" class="text-cuvio-secondary text-cuvio-accent-hover transition py-2">Nutrition</a>
+        <a href="/recipes/" class="text-cuvio-secondary text-cuvio-accent-hover transition py-2">Recipes</a>
+        <a href="#download" class="cta-button text-cuvio-white px-6 py-3 rounded-lg font-semibold text-center">
+          Get Started Free
+        </a>
+      </nav>
+    </div>
+  </div>
+</header>

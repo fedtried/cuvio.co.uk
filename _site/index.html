@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- Primary Meta Tags -->
+  <title>Cuvio: AI Meal Planner with Nutrition Tracking | Seasonal Recipes &amp; Smart Shopping Lists</title>
+  <meta name="description" content="Create personalized meal plans in under 2 minutes with Cuvio&#39;s AI meal planner. Features nutrition tracking, seasonal ingredients, smart shopping lists, AI cooking assistant, and 6 unique personas. Reduce food waste and save time with contextual recipe advice." />
+  <meta name="author" content="Cuvio" />
+  <meta name="robots" content="index, follow" />
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://cuvio.co.uk//" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://cuvio.co.uk//" />
+  <meta property="og:title" content="Cuvio: AI Meal Planner with Nutrition Tracking &amp; Seasonal Recipes" />
+  <meta property="og:description" content="Create personalized meal plans in under 2 minutes with AI cooking assistant, nutrition tracking, seasonal ingredients, and smart shopping lists. Reduce food waste and save time." />
+  <meta property="og:image" content="https://cuvio.co.uk/icon.png" />
+  <meta property="og:site_name" content="AI Meal Prep &amp; Grocery List" />
+  <meta property="og:locale" content="en_GB" />
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://cuvio.co.uk//" />
+  <meta property="twitter:title" content="Cuvio: AI Meal Planner with Nutrition Tracking &amp; Seasonal Recipes" />
+  <meta property="twitter:description" content="Create personalized meal plans in under 2 minutes with AI cooking assistant, nutrition tracking, seasonal ingredients, and smart shopping lists. Reduce food waste and save time." />
+  <meta property="twitter:image" content="https://cuvio.co.uk/icon.png" />
+  
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="/icon.png" />
+  
+  <!-- Preconnect to external domains -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+  <!-- Critical CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Cuvio",
+    "description": "AI meal planner for busy people who want to generate recipes and weekly meal plans from what they already have in their fridge",
+    "url": "https://cuvio.co.uk",
+    "applicationCategory": "LifestyleApplication",
+    "operatingSystem": "iOS, Android",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "GBP",
+      "availability": "https://schema.org/InStock"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "ratingCount": "150"
+    },
+    "screenshot": "https://cuvio.co.uk/mockup.png",
+    "author": {
+      "@type": "Organization",
+      "name": "Cuvio",
+      "url": "https://cuvio.co.uk"
+    }
+  }
+  </script>
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "AI Meal Prep &amp; Grocery List",
+    "url": "https://cuvio.co.uk",
+    "description": "AI meal planner for busy people who want to generate recipes and weekly meal plans from what they already have in their fridge",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://cuvio.co.uk/search?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+  
+  <!-- Custom CSS -->
+  <style>
+    :root {
+      --leaf-green: #48724A;
+      --leaf-green-dark: #7FC97F;
+      --soft-sage: #DDE8D2;
+      --soft-sage-dark: #3A3F2E;
+      --warm-sand: #F5F3E7;
+      --warm-sand-dark: #2E3A2F;
+      --clay-accent: #D9BBA9;
+      --clay-accent-dark: #B89B8A;
+      --seasonal-accent: #F6EFD2;
+      --seasonal-accent-dark: #7FC97F;
+      --primary-text: #223322;
+      --primary-text-dark: #F5F3E7;
+      --secondary-text: #5A6B5A;
+      --secondary-text-dark: #B8C2B8;
+      --background: #F7FBF4;
+      --background-dark: #181C18;
+      --card-background: #FFFFFF;
+      --card-background-dark: #232B24;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      scroll-behavior: smooth;
+      background-color: var(--background);
+      color: var(--primary-text);
+    }
+    
+    .hero-gradient {
+      background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 50%, var(--warm-sand) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero-gradient::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 20% 50%, rgba(76, 175, 80, 0.1) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 20%, rgba(255, 107, 53, 0.05) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    
+    .glass-card {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .feature-card {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      background: var(--card-background);
+      border: 1px solid rgba(76, 175, 80, 0.1);
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(45, 80, 22, 0.15);
+      border-color: var(--bright-green);
+    }
+    
+    .cta-button {
+      background: linear-gradient(135deg, var(--leaf-green) 0%, var(--leaf-green-dark) 100%);
+      transform: perspective(1px) translateZ(0);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      letter-spacing: 0.025em;
+      box-shadow: 0 4px 14px 0 rgba(72, 114, 74, 0.25);
+    }
+    
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+    
+    .cta-button:hover::before {
+      left: 100%;
+    }
+    
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px 0 rgba(72, 114, 74, 0.4);
+      background: linear-gradient(135deg, var(--leaf-green-dark) 0%, var(--leaf-green) 100%);
+    }
+    
+    .cta-button:active {
+      transform: translateY(0);
+      box-shadow: 0 4px 14px 0 rgba(72, 114, 74, 0.25);
+    }
+    
+    .floating-elements {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    
+    .floating-icon {
+      position: absolute;
+      opacity: 0.1;
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    .floating-icon:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+    .floating-icon:nth-child(2) { top: 60%; left: 85%; animation-delay: 2s; }
+    .floating-icon:nth-child(3) { top: 80%; left: 20%; animation-delay: 4s; }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(5deg); }
+    }
+    
+    .fade-in-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .fade-in-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .stagger-1 { transition-delay: 0.1s; }
+    .stagger-2 { transition-delay: 0.2s; }
+    .stagger-3 { transition-delay: 0.3s; }
+    
+    .header-blur {
+      backdrop-filter: blur(10px);
+      background: rgba(250, 255, 254, 0.9);
+      transition: all 0.3s ease;
+    }
+    
+    .phone-mockup {
+      position: relative;
+      z-index: 2;
+    }
+    
+    .mockup-glow {
+      position: absolute;
+      inset: -20px;
+      background: linear-gradient(45deg, var(--bright-green), var(--clay-accent));
+      border-radius: 30px;
+      opacity: 0.2;
+      filter: blur(20px);
+      z-index: 1;
+    }
+    
+    .stats-section {
+      background: linear-gradient(to right, var(--leaf-green), var(--bright-green));
+    }
+    
+    .testimonial-card {
+      background: var(--card-background);
+      border-left: 4px solid var(--bright-green);
+    }
+    
+    .pulse-dot {
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    
+    .scroll-indicator {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: bounce 2s infinite;
+    }
+    
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+      40% { transform: translateX(-50%) translateY(-10px); }
+      60% { transform: translateX(-50%) translateY(-5px); }
+    }
+    
+    @media (max-width: 768px) {
+      .hero-gradient { padding-top: 2rem; }
+      .feature-card:hover { transform: none; }
+    }
+    
+    /* Custom Cuvio color classes */
+    .text-cuvio-primary { color: var(--primary-text); }
+    .text-cuvio-secondary { color: var(--secondary-text); }
+    .text-cuvio-accent { color: var(--leaf-green); }
+    .text-cuvio-accent-hover:hover { color: var(--leaf-green-dark); }
+    .text-cuvio-light { color: var(--soft-sage); }
+    .text-cuvio-white { color: white; }
+    
+    .bg-cuvio-primary { background-color: var(--primary-text); }
+    .bg-cuvio-secondary { background-color: var(--secondary-text); }
+    .bg-cuvio-accent { background-color: var(--leaf-green); }
+    .bg-cuvio-accent-hover:hover { background-color: var(--leaf-green-dark); }
+    .bg-cuvio-light { background-color: var(--soft-sage); }
+    .bg-cuvio-card { background-color: var(--card-background); }
+    .bg-cuvio-section { background-color: var(--warm-sand); }
+    .bg-cuvio-footer { background-color: var(--background-dark); }
+    
+    .bg-gradient-cuvio { background: linear-gradient(135deg, var(--leaf-green) 0%, var(--leaf-green-dark) 100%); }
+    .bg-gradient-cuvio-reverse { background: linear-gradient(135deg, var(--leaf-green-dark) 0%, var(--leaf-green) 100%); }
+    
+    .border-cuvio-accent { border-color: var(--leaf-green); }
+    .border-cuvio-accent-hover:hover { border-color: var(--leaf-green-dark); }
+    
+    .text-gradient-cuvio { 
+      background: linear-gradient(135deg, var(--leaf-green) 0%, var(--leaf-green-dark) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+<header class="fixed top-0 left-0 w-full z-50 header-blur">
+  <div class="container mx-auto px-4 py-4">
+    <div class="flex justify-between items-center">
+      <div class="flex items-center space-x-2">
+        <a href="/" class="flex items-center space-x-2 hover:opacity-80 transition-opacity">
+          <img src="/icon.png" alt="Cuvio" class="w-10 h-10 rounded-lg" />
+          <span class="text-xl font-bold text-cuvio-primary">Cuvio</span>
+        </a>
+      </div>
+      
+      <nav class="hidden md:flex items-center space-x-8">
+        <a href="/features/" class="text-cuvio-secondary text-cuvio-accent-hover transition">Features</a>
+        <a href="/personas/" class="text-cuvio-secondary text-cuvio-accent-hover transition">Personas</a>
+        <a href="/nutrition/" class="text-cuvio-secondary text-cuvio-accent-hover transition">Nutrition</a>
+        <a href="/recipes/" class="text-cuvio-secondary text-cuvio-accent-hover transition">Recipes</a>
+        <a href="#download" class="cta-button text-cuvio-white px-6 py-2 rounded-lg font-semibold">
+          Get Started Free
+        </a>
+      </nav>
+      
+      <button class="md:hidden p-2" id="mobile-menu-toggle" aria-label="Toggle mobile menu">
+        <div class="w-6 h-0.5 bg-cuvio-secondary mb-1"></div>
+        <div class="w-6 h-0.5 bg-cuvio-secondary mb-1"></div>
+        <div class="w-6 h-0.5 bg-cuvio-secondary"></div>
+      </button>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div class="md:hidden hidden mt-4" id="mobile-menu">
+      <nav class="flex flex-col space-y-4 py-4">
+        <a href="/features/" class="text-cuvio-secondary text-cuvio-accent-hover transition py-2">Features</a>
+        <a href="/personas/" class="text-cuvio-secondary text-cuvio-accent-hover transition py-2">Personas</a>
+        <a href="/nutrition/" class="text-cuvio-secondary text-cuvio-accent-hover transition py-2">Nutrition</a>
+        <a href="/recipes/" class="text-cuvio-secondary text-cuvio-accent-hover transition py-2">Recipes</a>
+        <a href="#download" class="cta-button text-cuvio-white px-6 py-3 rounded-lg font-semibold text-center">
+          Get Started Free
+        </a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+  
+  
+<main class="pt-16">
+  <!-- Hero Section -->
+  <section class="hero-gradient min-h-screen flex items-center relative overflow-hidden">
+    
+    <div class="container mx-auto px-4 py-8 relative z-10">
+      <div class="grid lg:grid-cols-2 gap-8 items-center">
+        <!-- Left Content -->
+        <div class="fade-in-up text-center lg:text-left">
+          <div class="inline-flex items-center space-x-2 bg-white/90 backdrop-blur-sm text-cuvio-accent px-4 py-2 rounded-full text-sm font-medium mb-6 shadow-lg border border-green-100">
+            <span class="pulse-dot w-2 h-2 bg-cuvio-accent rounded-full"></span>
+            <span>✨ New: AI Sous-Chef Assistant</span>
+          </div>
+          
+          <div class="mb-6">
+            <h1 class="text-5xl lg:text-6xl font-bold leading-tight mb-3">
+              <span class="text-cuvio-primary">Smart</span>
+              <br>
+              <span class="text-gradient-cuvio">Meal Planning</span>
+              <br>
+              <span class="text-cuvio-primary">Made Simple</span>
+            </h1>
+            <div class="flex items-center justify-center lg:justify-start space-x-2 text-lg">
+              <span class="text-cuvio-secondary">by</span>
+              <img src="/icon.png" alt="Cuvio AI meal planner mascot" class="w-8 h-8 rounded-full" loading="eager" />
+              <span class="font-bold text-cuvio-primary">Cuvio</span>
+            </div>
+          </div>
+          
+          <p class="text-lg text-cuvio-secondary mb-6 max-w-lg mx-auto lg:mx-0 leading-relaxed">
+            Stop stressing about what to cook. Our AI creates personalized meal plans in under 2 minutes, using ingredients you love and optimizing for nutrition, seasonality, and your lifestyle.
+          </p>
+          
+          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-6">
+            <a href="#download" class="cta-button text-cuvio-white px-12 py-6 rounded-2xl font-bold text-xl w-full sm:w-auto text-center shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+              <i class="fas fa-magic mr-3"></i>Start Your Free Trial
+            </a>
+            <a href="/features/" class="inline-flex items-center space-x-2 text-cuvio-accent hover:text-cuvio-accent-hover transition-colors font-semibold">
+              <span>See How It Works</span>
+              <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+          
+          <div class="flex items-center justify-center lg:justify-start space-x-8 text-sm text-cuvio-secondary">
+            <div class="flex items-center space-x-2">
+              <i class="fas fa-clock text-cuvio-accent"></i>
+              <span>2-minute setup</span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <i class="fas fa-leaf text-cuvio-accent"></i>
+              <span>Seasonal recipes</span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <i class="fas fa-mobile-alt text-cuvio-accent"></i>
+              <span>Available on iOS</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Right Content - Hero GIF -->
+        <div class="fade-in-up stagger-1 flex justify-center relative">
+          <div class="hero-gif-container" style="display:flex; justify-content:center;">
+            <img 
+              src="/hero_gif.gif" 
+              alt="Cuvio AI meal planner app demonstration" 
+              class="hero-gif"
+              style="width:45%"
+              loading="eager"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scroll-indicator">
+      <div class="w-6 h-10 border-2 border-cuvio-secondary rounded-full flex justify-center">
+        <div class="w-1 h-3 bg-cuvio-secondary rounded-full mt-2 animate-bounce"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Features Overview -->
+  <section id="features" class="py-20 bg-cuvio-section">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16 fade-in-up">
+        <h2 class="text-4xl font-bold mb-4">Why Cuvio Changes Everything</h2>
+        <p class="text-xl text-cuvio-secondary max-w-2xl mx-auto">
+          Our intelligent AI meal planner adapts to your lifestyle, preferences, and nutritional goals to create personalized meal plans in under 2 minutes.
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="feature-card p-6 rounded-2xl fade-in-up text-center">
+          <div class="w-16 h-16 bg-gradient-cuvio rounded-2xl flex items-center justify-center text-cuvio-white text-2xl mb-4 mx-auto">
+            🤖
+          </div>
+          <h3 class="text-lg font-bold text-cuvio-primary mb-3">AI Assistant</h3>
+          <p class="text-cuvio-secondary text-sm">Contextual cooking advice and smart ingredient substitutions</p>
+        </div>
+        
+        <div class="feature-card p-6 rounded-2xl fade-in-up stagger-1 text-center">
+          <div class="w-16 h-16 bg-gradient-cuvio rounded-2xl flex items-center justify-center text-cuvio-white text-2xl mb-4 mx-auto">
+            <i class="fas fa-chart-bar"></i>
+          </div>
+          <h3 class="text-lg font-bold text-cuvio-primary mb-3">Nutrition Tracking</h3>
+          <p class="text-cuvio-secondary text-sm">Macro and micronutrient tracking with detailed insights</p>
+        </div>
+        
+        <div class="feature-card p-6 rounded-2xl fade-in-up stagger-2 text-center">
+          <div class="w-16 h-16 bg-gradient-cuvio rounded-2xl flex items-center justify-center text-cuvio-white text-2xl mb-4 mx-auto">
+            <i class="fas fa-globe"></i>
+          </div>
+          <h3 class="text-lg font-bold text-cuvio-primary mb-3">Seasonal Ingredients</h3>
+          <p class="text-cuvio-secondary text-sm">Location-based seasonal produce optimization</p>
+        </div>
+        
+        <div class="feature-card p-6 rounded-2xl fade-in-up stagger-3 text-center">
+          <div class="w-16 h-16 bg-gradient-cuvio rounded-2xl flex items-center justify-center text-cuvio-white text-2xl mb-4 mx-auto">
+            👤
+          </div>
+          <h3 class="text-lg font-bold text-cuvio-primary mb-3">6 Personas</h3>
+          <p class="text-cuvio-secondary text-sm">Choose your perfect cooking personality</p>
+        </div>
+      </div>
+      
+      <div class="text-center mt-12">
+        <a href="/features/" class="cta-button text-cuvio-white px-8 py-3 rounded-lg font-semibold">
+          Explore All Features
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section id="how-it-works" class="py-20">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16 fade-in-up">
+        <h2 class="text-4xl font-bold mb-4">How Cuvio Works</h2>
+        <p class="text-xl text-cuvio-secondary">Three simple steps to transform your meal planning</p>
+      </div>
+      
+      <div class="grid md:grid-cols-3 gap-12 items-start">
+        <div class="text-center fade-in-up">
+          <div class="w-20 h-20 bg-gradient-cuvio rounded-full flex items-center justify-center text-cuvio-white text-2xl font-bold mx-auto mb-6">
+            1
+          </div>
+          <h3 class="text-xl font-bold mb-4">Set Your Preferences</h3>
+          <p class="text-cuvio-secondary">Tell us about your dietary needs, cooking skills, and food preferences. Takes less than 2 minutes.</p>
+        </div>
+        
+        <div class="text-center fade-in-up stagger-1">
+          <div class="w-20 h-20 bg-gradient-cuvio rounded-full flex items-center justify-center text-cuvio-white text-2xl font-bold mx-auto mb-6">
+            2
+          </div>
+          <h3 class="text-xl font-bold mb-4">Get Your Plan</h3>
+          <p class="text-cuvio-secondary">Receive personalized weekly meal plans with recipes, shopping lists, and prep instructions.</p>
+        </div>
+        
+        <div class="text-center fade-in-up stagger-2">
+          <div class="w-20 h-20 bg-gradient-cuvio rounded-full flex items-center justify-center text-cuvio-white text-2xl font-bold mx-auto mb-6">
+            3
+          </div>
+          <h3 class="text-xl font-bold mb-4">Cook & Enjoy</h3>
+          <p class="text-cuvio-secondary">Follow guided cooking instructions and enjoy delicious, stress-free meals with your family.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="py-20 bg-cuvio-section">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16 fade-in-up">
+        <h2 class="text-4xl font-bold mb-4">Frequently Asked Questions</h2>
+        <p class="text-xl text-cuvio-secondary">Quick answers to common questions about Cuvio</p>
+      </div>
+      
+      <div class="max-w-3xl mx-auto space-y-6">
+        <div class="feature-card p-6 rounded-2xl fade-in-up">
+          <h3 class="text-xl font-bold text-cuvio-primary mb-3">How does Cuvio's AI meal planner work?</h3>
+          <p class="text-cuvio-secondary">Cuvio uses advanced AI to analyze your ingredients, preferences, and goals to generate personalized meal plans in under 2 minutes. Our AI considers seasonal produce, your location, budget, and household size.</p>
+        </div>
+        
+        <div class="feature-card p-6 rounded-2xl fade-in-up stagger-1">
+          <h3 class="text-xl font-bold text-cuvio-primary mb-3">Can I use ingredients I already have?</h3>
+          <p class="text-cuvio-secondary">Yes! Cuvio's Leftovers Mode creates recipes from ingredients you already have. Take a photo of your fridge or input what's available, and our AI will suggest delicious meals to use them up.</p>
+        </div>
+        
+        <div class="feature-card p-6 rounded-2xl fade-in-up stagger-2">
+          <h3 class="text-xl font-bold text-cuvio-primary mb-3">Does Cuvio work for dietary restrictions?</h3>
+          <p class="text-cuvio-secondary">Absolutely! Cuvio accommodates all dietary restrictions including vegetarian, vegan, gluten-free, dairy-free, keto, paleo, and many others. Our AI learns your preferences and suggests appropriate alternatives.</p>
+        </div>
+        
+        <div class="feature-card p-6 rounded-2xl fade-in-up stagger-3">
+          <h3 class="text-xl font-bold text-cuvio-primary mb-3">Is Cuvio free to use?</h3>
+          <p class="text-cuvio-secondary">Cuvio offers a free 3-day trial with no commitment. After the trial, you can choose from our affordable subscription plans or cancel anytime.</p>
+        </div>
+      </div>
+      
+      <div class="text-center mt-12">
+        <a href="/faq/" class="cta-button text-cuvio-white px-8 py-3 rounded-lg font-semibold">
+          View All FAQs
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section id="download" class="py-20 bg-gradient-cuvio text-cuvio-white">
+    <div class="container mx-auto px-4 text-center">
+      <div class="max-w-3xl mx-auto fade-in-up">
+        <h2 class="text-4xl font-bold mb-6">Ready to Transform Your Meal Planning?</h2>
+        <p class="text-xl mb-8 opacity-90">
+          Start your free trial today.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
+          <a href="https://apps.apple.com/us/app/cuvio-easy-meal-planning/id6745519272" target="_blank" class="inline-block" rel="noopener">
+            <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download Cuvio on the App Store" class="h-14 transition-transform hover:scale-105" loading="lazy" />
+          </a>
+          <div class="bg-cuvio-white bg-opacity-20 rounded-xl p-4">
+            <div class="text-sm opacity-80">Coming Soon</div>
+            <div class="font-semibold">Google Play Store</div>
+          </div>
+        </div>
+        
+        <div class="text-sm opacity-75">
+          ✓ Free 3-day trial • ✓ No commitment • ✓ Cancel anytime
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- FAQ Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How does Cuvio's AI meal planner work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cuvio uses advanced AI to analyze your ingredients, preferences, and goals to generate personalized meal plans in under 2 minutes. Our AI considers seasonal produce, your location, budget, and household size."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use ingredients I already have?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes! Cuvio's Leftovers Mode creates recipes from ingredients you already have. Take a photo of your fridge or input what's available, and our AI will suggest delicious meals to use them up."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Cuvio work for dietary restrictions?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Absolutely! Cuvio accommodates all dietary restrictions including vegetarian, vegan, gluten-free, dairy-free, keto, paleo, and many others. Our AI learns your preferences and suggests appropriate alternatives."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Cuvio free to use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cuvio offers a free 3-day trial with no credit card required. After the trial, you can choose from our affordable subscription plans or cancel anytime."
+      }
+    }
+  ]
+}
+</script>
+
+<!-- Breadcrumb Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://cuvio.co.uk/"
+    }
+  ]
+}
+</script>
+
+<script>
+  // Hero Carousel functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    const slides = document.querySelectorAll('.carousel-slide');
+    const indicators = document.querySelectorAll('.indicator');
+    let currentSlide = 0;
+    let autoPlayInterval = null;
+
+    console.log('Carousel script loaded, found slides:', slides.length);
+
+    if (slides.length === 0) {
+      console.log('No slides found, exiting carousel script');
+      return;
+    }
+
+    // Ensure first slide is active
+    slides.forEach((slide, index) => {
+      if (index === 0) {
+        slide.classList.add('active');
+      } else {
+        slide.classList.remove('active');
+      }
+    });
+
+    indicators.forEach((indicator, index) => {
+      if (index === 0) {
+        indicator.classList.add('active');
+      } else {
+        indicator.classList.remove('active');
+      }
+    });
+
+    function goToSlide(index) {
+      if (index === currentSlide || index >= slides.length) return;
+
+      console.log('Going to slide:', index);
+
+      // Remove active class from current slide and indicator
+      slides[currentSlide].classList.remove('active');
+      indicators[currentSlide].classList.remove('active');
+
+      // Update current slide
+      currentSlide = index;
+
+      // Add active class to new slide and indicator
+      slides[currentSlide].classList.add('active');
+      indicators[currentSlide].classList.add('active');
+    }
+
+    function nextSlide() {
+      const nextIndex = (currentSlide + 1) % slides.length;
+      goToSlide(nextIndex);
+    }
+
+    function startAutoPlay() {
+      stopAutoPlay();
+      autoPlayInterval = setInterval(nextSlide, 4000); // Change slide every 4 seconds
+      console.log('Auto-play started');
+    }
+
+    function stopAutoPlay() {
+      if (autoPlayInterval) {
+        clearInterval(autoPlayInterval);
+        autoPlayInterval = null;
+        console.log('Auto-play stopped');
+      }
+    }
+
+    // Indicator click events
+    indicators.forEach((indicator, index) => {
+      indicator.addEventListener('click', () => {
+        console.log('Indicator clicked:', index);
+        goToSlide(index);
+      });
+    });
+
+    // Pause auto-play on hover
+    const carouselContainer = document.querySelector('.hero-carousel-container');
+    if (carouselContainer) {
+      carouselContainer.addEventListener('mouseenter', stopAutoPlay);
+      carouselContainer.addEventListener('mouseleave', startAutoPlay);
+    }
+
+    // Start auto-play
+    startAutoPlay();
+  });
+</script>
+
+  
+  <!-- Footer -->
+<footer class="bg-cuvio-footer text-cuvio-white py-16">
+  <div class="container mx-auto px-4">
+    <div class="grid md:grid-cols-4 gap-8">
+      <div>
+        <div class="flex items-center space-x-2 mb-4">
+          <div class="w-8 h-8 bg-gradient-cuvio rounded-lg flex items-center justify-center">
+            <span class="text-cuvio-white font-bold">C</span>
+          </div>
+          <span class="text-xl font-bold">Cuvio</span>
+        </div>
+        <p class="text-cuvio-secondary mb-4">Making meal planning simple one step at a time.</p>
+        <div class="flex space-x-3">
+          <a href="mailto:info@cuvio.co.uk" class="w-8 h-8 bg-cuvio-secondary rounded-full flex items-center justify-center hover:bg-cuvio-accent-hover transition cursor-pointer" aria-label="Contact us via email">
+            <i class="fas fa-envelope text-sm"></i>
+          </a>
+          <a href="https://www.facebook.com/profile.php?id=61578069781120" target="_blank" rel="noopener" class="w-8 h-8 bg-cuvio-secondary rounded-full flex items-center justify-center hover:bg-cuvio-accent-hover transition cursor-pointer" aria-label="Follow us on Facebook">
+            <i class="fab fa-facebook-f text-sm"></i>
+          </a>
+          <a href="https://medium.com/@cuvio" target="_blank" rel="noopener" class="w-8 h-8 bg-cuvio-secondary rounded-full flex items-center justify-center hover:bg-cuvio-accent-hover transition cursor-pointer" aria-label="Follow us on Medium">
+            <i class="fab fa-medium-m text-sm"></i>
+          </a>
+          <a href="https://www.instagram.com/cuvioapp/" target="_blank" rel="noopener" class="w-8 h-8 bg-cuvio-secondary rounded-full flex items-center justify-center hover:bg-cuvio-accent-hover transition cursor-pointer" aria-label="Follow us on Instagram">
+            <i class="fab fa-instagram text-sm"></i>
+          </a>
+          <a href="https://www.tiktok.com/@cuvioapp" target="_blank" rel="noopener" class="w-8 h-8 bg-cuvio-secondary rounded-full flex items-center justify-center hover:bg-cuvio-accent-hover transition cursor-pointer" aria-label="Follow us on TikTok">
+            <i class="fab fa-tiktok text-sm"></i>
+          </a>
+        </div>
+      </div>
+      
+      <div>
+        <h4 class="font-semibold mb-4">Product</h4>
+        <ul class="space-y-2 text-cuvio-secondary">
+          <li><a href="/features/" class="hover:text-cuvio-white transition">Features</a></li>
+          <li><a href="/personas/" class="hover:text-cuvio-white transition">Personas</a></li>
+          <li><a href="/nutrition/" class="hover:text-cuvio-white transition">Nutrition</a></li>
+          <li><a href="/recipes/" class="hover:text-cuvio-white transition">Recipes by Ingredients</a></li>
+          <li><a href="/meal-plans/" class="hover:text-cuvio-white transition">Weekly Meal Plans</a></li>
+        </ul>
+      </div>
+      
+      <div>
+        <h4 class="font-semibold mb-4">Support</h4>
+        <ul class="space-y-2 text-cuvio-secondary">
+          <li><a href="mailto:info@cuvio.co.uk" class="hover:text-cuvio-white transition">Contact Us</a></li>
+          <li><a href="/help/" class="hover:text-cuvio-white transition">Help Center</a></li>
+          <li><a href="/faq/" class="hover:text-cuvio-white transition">FAQ</a></li>
+        </ul>
+      </div>
+      
+      <div>
+        <h4 class="font-semibold mb-4">Legal</h4>
+        <ul class="space-y-2 text-cuvio-secondary">
+          <li><a href="/privacy/" class="hover:text-cuvio-white transition">Privacy Policy</a></li>
+          <li><a href="/terms/" class="hover:text-cuvio-white transition">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="border-t border-cuvio-secondary mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+      <p class="text-cuvio-secondary text-sm">© 2025 AI Meal Prep &amp; Grocery List. All rights reserved.</p>
+      <p class="text-cuvio-secondary text-sm mt-4 md:mt-0">Made with <i class="fas fa-heart text-red-500"></i> for busy people</p>
+    </div>
+  </div>
+</footer>
+
+
+  <script>
+    // Intersection Observer for animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    // Observe all elements with fade-in animations
+    document.querySelectorAll('.fade-in-up').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Header scroll effect
+    let lastScrollTop = 0;
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('header');
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      
+      if (scrollTop > 100) {
+        header.style.transform = scrollTop > lastScrollTop ? 'translateY(-100%)' : 'translateY(0)';
+      } else {
+        header.style.transform = 'translateY(0)';
+      }
+      
+      lastScrollTop = scrollTop;
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Mobile menu toggle
+    const mobileMenuButton = document.getElementById('mobile-menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    mobileMenuButton?.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Close mobile menu when clicking on links
+    document.querySelectorAll('#mobile-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+
+    // Hero Carousel functionality
+    class HeroCarousel {
+      constructor() {
+        this.slides = document.querySelectorAll('.carousel-slide');
+        this.indicators = document.querySelectorAll('.indicator');
+        this.currentSlide = 0;
+        this.autoPlayInterval = null;
+        this.init();
+      }
+
+      init() {
+        if (this.slides.length === 0) return;
+        
+        this.bindEvents();
+        this.startAutoPlay();
+      }
+
+      bindEvents() {
+        // Indicator click events
+        this.indicators.forEach((indicator, index) => {
+          indicator.addEventListener('click', () => {
+            this.goToSlide(index);
+          });
+        });
+
+        // Pause auto-play on hover
+        const carouselContainer = document.querySelector('.hero-carousel-container');
+        if (carouselContainer) {
+          carouselContainer.addEventListener('mouseenter', () => {
+            this.stopAutoPlay();
+          });
+          
+          carouselContainer.addEventListener('mouseleave', () => {
+            this.startAutoPlay();
+          });
+        }
+      }
+
+      goToSlide(index) {
+        if (index === this.currentSlide) return;
+
+        // Remove active class from current slide and indicator
+        this.slides[this.currentSlide].classList.remove('active');
+        this.indicators[this.currentSlide].classList.remove('active');
+
+        // Update current slide
+        this.currentSlide = index;
+
+        // Add active class to new slide and indicator
+        this.slides[this.currentSlide].classList.add('active');
+        this.indicators[this.currentSlide].classList.add('active');
+      }
+
+      nextSlide() {
+        const nextIndex = (this.currentSlide + 1) % this.slides.length;
+        this.goToSlide(nextIndex);
+      }
+
+      startAutoPlay() {
+        this.stopAutoPlay();
+        this.autoPlayInterval = setInterval(() => {
+          this.nextSlide();
+        }, 4000); // Change slide every 4 seconds
+      }
+
+      stopAutoPlay() {
+        if (this.autoPlayInterval) {
+          clearInterval(this.autoPlayInterval);
+          this.autoPlayInterval = null;
+        }
+      }
+    }
+
+    // Initialize carousel when DOM is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+      new HeroCarousel();
+    });
+  </script>
+</body>
+</html>

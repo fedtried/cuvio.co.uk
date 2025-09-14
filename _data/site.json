@@ -1,0 +1,18 @@
+{
+  "title": "AI Meal Prep & Grocery List",
+  "brand": "Cuvio",
+  "description": "AI meal planner for busy people who want to generate recipes and weekly meal plans from what they already have in their fridge",
+  "url": "https://cuvio.co.uk",
+  "author": "Cuvio",
+  "email": "info@cuvio.co.uk",
+  "social": {
+    "facebook": "https://www.facebook.com/profile.php?id=61578069781120",
+    "medium": "https://medium.com/@cuvio",
+    "tiktok": "https://www.tiktok.com/@cuvioapp",
+    "instagram": "https://www.instagram.com/cuvioapp/"
+  },
+  "appStore": {
+    "ios": "https://apps.apple.com/us/app/cuvio-easy-meal-planning/id6745519272",
+    "android": "coming-soon"
+  }
+}
